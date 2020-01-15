@@ -1,0 +1,172 @@
+{"nodes": [
+  {"id":"鳥類", "group":6},
+  
+  {"id":"スズメ目", "group":6},
+
+  {"id":"ハタオリドリ科", "group":1},
+  {"id":"ウグイス科", "group":1},
+  {"id":"ヒヨドリ科", "group":1},
+  {"id":"モズ科", "group":1},
+  {"id":"カラス科", "group":1},
+  {"id":"シジュウカラ科", "group":1},
+  {"id":"ヒバリ科", "group":1},
+  {"id":"ツバメ科", "group":1},
+  {"id":"ムクドリ科", "group":1},
+
+  
+  {"id":"スズメ", "group":2},
+  {"id":"ウグイス", "group":2},
+  {"id":"ヒヨドリ", "group":2},
+  {"id":"モズ", "group":2},
+  {"id":"オナガ", "group":2},
+  {"id":"ハシボソガラス", "group":2},
+  {"id":"ハシブトガラス", "group":2},
+  {"id":"コガラ", "group":2},
+  {"id":"ヤマガラ", "group":2},
+  {"id":"シジュウカラ", "group":2},
+  {"id":"ヒバリ", "group":2},
+  {"id":"ツバメ", "group":2},
+  {"id":"ムクドリ", "group":2},
+    
+  
+  {"id":"カッコウ目", "group":3},
+  
+  {"id":"カッコウ科", "group":4},
+
+  {"id":"カッコウ", "group":5},
+  {"id":"カンムリカッコウ", "group":5},
+  {"id":"セグロカッコウ", "group":5},
+  {"id":"ジュウイチ", "group":5},
+  {"id":"ホトトギス", "group":5},
+  {"id":"ツツドリ", "group":5},
+  
+  {"id":"タカ目", "group":7},
+  
+  {"id":"タカ科", "group":8},
+  {"id":"ミサゴ科", "group":8},
+  
+  {"id":"トンビ", "group":9},
+  {"id":"オオジロワシ", "group":9},
+  {"id":"オオワシ", "group":9},
+  {"id":"ハイタカ", "group":9},
+  {"id":"オオタカ", "group":9},
+  {"id":"イヌワシ", "group":9},
+  {"id":"クマタカ", "group":9},
+  {"id":"カラフトワシ", "group":9},
+  {"id":"ミサゴ", "group":9},
+  
+  
+  {"id":"チドリ目", "group":10},
+  
+  {"id":"カモメ科", "group":11},
+  {"id":"チドリ科", "group":11},
+  {"id":"ミヤコドリ科", "group":11},
+  {"id":"セイタカシギ科", "group":11},
+  {"id":"シギ科", "group":11},
+  {"id":"レンカク科", "group":11},
+  {"id":"タマシギ科", "group":11},
+  {"id":"ミフウズラ科", "group":11},
+  {"id":"ツバメドリ科", "group":11},
+  {"id":"トウゾクカモメ科", "group":11},
+  {"id":"ウミスズメ科", "group":11},
+  
+  {"id":"ウミネコ", "group":12},
+  {"id":"カモメ", "group":12},
+  {"id":"コチドリ", "group":12},
+  {"id":"ミヤコドリ", "group":12},
+  {"id":"セイタカシギ", "group":12},
+  {"id":"ヤマシギ", "group":12},
+  {"id":"レンカク", "group":12},
+  {"id":"タマシギ", "group":12},
+  {"id":"ミフウズラ", "group":12},
+  {"id":"ツバメドリ", "group":12},
+  {"id":"トウゾクカモメ", "group":12},
+  {"id":"ウミスズメ", "group":12},
+  {"id":"ウミガラス", "group":12},
+  {"id":"ウミバト", "group":12}
+
+],
+ 
+ "links": [
+   {"source":"鳥類", "target":"スズメ目","value":3.4402},
+   {"source":"鳥類", "target":"カッコウ目","value":3.4402},
+   {"source":"鳥類", "target":"タカ目","value":3.4402},
+   {"source":"鳥類", "target":"チドリ目","value":3.4402},
+   
+   
+   {"source":"スズメ目", "target":"ハタオリドリ科","value":3.4402},
+   {"source":"スズメ目", "target":"ウグイス科","value":3.4402},
+   {"source":"スズメ目", "target":"ヒヨドリ科","value":3.4402},
+   {"source":"スズメ目", "target":"モズ科","value":3.4402},
+   {"source":"スズメ目", "target":"カラス科","value":3.4402},
+   {"source":"スズメ目", "target":"シジュウカラ科","value":3.4402},
+   {"source":"スズメ目", "target":"ヒバリ科","value":3.4402},
+   {"source":"スズメ目", "target":"ツバメ科","value":3.4402},
+   {"source":"スズメ目", "target":"ムクドリ科","value":3.4402},
+   
+   
+   {"source":"ハタオリドリ科", "target":"スズメ","value":3.4402},
+   {"source":"ウグイス科", "target":"ウグイス","value":3.4402},
+   {"source":"ヒヨドリ科", "target":"ヒヨドリ","value":3.4402},
+   {"source":"モズ科", "target":"モズ","value":3.4402},
+   {"source":"カラス科", "target":"ハシボソガラス","value":3.4402},
+   {"source":"カラス科", "target":"ハシブトガラス","value":3.4402},
+   {"source":"カラス科", "target":"オナガ","value":3.4402},
+   {"source":"シジュウカラ科", "target":"コガラ","value":3.4402},
+   {"source":"シジュウカラ科", "target":"ヤマガラ","value":3.4402},
+   {"source":"シジュウカラ科", "target":"シジュウカラ","value":3.4402},
+   {"source":"ヒバリ科", "target":"ヒバリ","value":3.4402},
+   {"source":"ツバメ科", "target":"ツバメ","value":3.4402},
+   {"source":"ムクドリ科", "target":"ムクドリ","value":3.4402},
+   
+   
+   {"source":"カッコウ目", "target":"カッコウ科","value":3.4402},
+   
+   {"source":"カッコウ科", "target":"カッコウ","value":3.4402},
+   {"source":"カッコウ科", "target":"カンムリカッコウ","value":3.4402},
+   {"source":"カッコウ科", "target":"セグロカッコウ","value":3.4402},
+   {"source":"カッコウ科", "target":"ジュウイチ","value":3.4402},
+   {"source":"カッコウ科", "target":"ホトトギス","value":3.4402},
+   {"source":"カッコウ科", "target":"ツツドリ","value":3.4402},
+   
+   {"source":"タカ目", "target":"タカ科","value":3.4402},
+   {"source":"タカ目", "target":"ミサゴ科","value":3.4402},
+   
+   {"source":"タカ科", "target":"トンビ","value":3.4402},
+   {"source":"タカ科", "target":"オオジロワシ","value":3.4402},
+   {"source":"タカ科", "target":"オオワシ","value":3.4402},
+   {"source":"タカ科", "target":"ハイタカ","value":3.4402},
+   {"source":"タカ科", "target":"オオタカ","value":3.4402},
+   {"source":"タカ科", "target":"イヌワシ","value":3.4402},
+   {"source":"タカ科", "target":"クマタカ","value":3.4402},
+   {"source":"タカ科", "target":"カラフトワシ","value":3.4402},
+   {"source":"ミサゴ科", "target":"ミサゴ","value":3.4402},
+
+   {"source":"チドリ目", "target":"カモメ科","value":3.4402},
+   {"source":"チドリ目", "target":"チドリ科","value":3.4402},
+   {"source":"チドリ目", "target":"ミヤコドリ科","value":3.4402},
+   {"source":"チドリ目", "target":"セイタカシギ科","value":3.4402},
+   {"source":"チドリ目", "target":"シギ科","value":3.4402},
+   {"source":"チドリ目", "target":"レンカク科","value":3.4402},
+   {"source":"チドリ目", "target":"タマシギ科","value":3.4402},
+   {"source":"チドリ目", "target":"ミフウズラ科","value":3.4402},
+   {"source":"チドリ目", "target":"ツバメドリ科","value":3.4402},
+   {"source":"チドリ目", "target":"トウゾクカモメ科","value":3.4402},
+   {"source":"チドリ目", "target":"ウミスズメ科","value":3.4402},
+   
+   {"source":"カモメ科", "target":"ウミネコ","value":3.4402},
+   {"source":"カモメ科", "target":"カモメ","value":3.4402},
+   {"source":"チドリ科", "target":"コチドリ","value":3.4402},
+   {"source":"ミヤコドリ科", "target":"ミヤコドリ","value":3.4402},
+   {"source":"セイタカシギ科", "target":"セイタカシギ","value":3.4402},
+   {"source":"シギ科", "target":"ヤマシギ","value":3.4402},
+   {"source":"レンカク科", "target":"レンカク","value":3.4402},
+   {"source":"タマシギ科", "target":"タマシギ","value":3.4402},
+   {"source":"ミフウズラ科", "target":"ミフウズラ","value":3.4402},
+   {"source":"ツバメドリ科", "target":"ツバメドリ","value":3.4402},
+   {"source":"トウゾクカモメ科", "target":"トウゾクカモメ","value":3.4402},
+   {"source":"ウミスズメ科", "target":"ウミスズメ","value":3.4402},
+   {"source":"ウミスズメ科", "target":"ウミガラス","value":3.4402},
+   {"source":"ウミスズメ科", "target":"ウミバト","value":3.4402}
+
+ ]}

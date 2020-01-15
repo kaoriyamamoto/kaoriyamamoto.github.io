@@ -1,0 +1,85 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="googleSheets.js"></script>
+      
+    <style>
+        body{
+            background-color: antiquewhite;
+            margin: 80px;
+        }
+        h1{
+            font-family: 'SimSun';
+            margin: 50px;
+        }
+        button,h2{
+            font-family: 'Monotype Corsiva';
+            margin: 20px;
+        }
+        button{
+            display: inline-block;
+            text-decoration: none;
+            background: #c6aa80;
+            color: #FFF;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            border-radius: 50%;
+            text-align: center;
+            overflow: hidden;
+            box-shadow: 0px 0px 0px 5px #c6aa80;
+            border: dashed 1px #FFF;
+            transition: .4s;
+        }
+        div{
+            margin: 50px;
+        }
+      
+    </style>
+      
+  </head>
+  <body>
+    <center>
+    <h1>てまりのおしろに行ってきたドン！</h1>
+    <h2>Welcome! Cute cats greet you. Now press this button!</h2>
+    <button id="mybtn">Click！</button>
+    <div id="contents"></div>
+
+    <script>
+    /* global $ loadSheets */
+    $(function(){
+      $("body").hide().fadeIn(3000);
+        
+      $("#mybtn").on("click",showdata);
+      
+      async function showdata () {
+        let data = await loadSheets('s1317259!A1:E100');
+        console.log(data.values[0][0]);
+        
+          
+        for(var x=1; x<=9; x++){
+          $("#contents").append("<img height='300px' src='"+data.values[x][2]+"'/>").hide().fadeIn("slow");
+          $("#contents").append(data.values[x][1]); /*[行][列]*/
+          $("#contents").append(data.values[x][3]);
+          $("#contents").append(data.values[x][4]);
+            if(x%3==0){
+               $("#contents").append("<br>");
+               }
+        }
+
+//        $("#contents").mouseover(function(){
+//          
+//        });
+        
+      } 
+    });
+
+    </script>
+    <script async defer src="https://apis.google.com/js/api.js"
+      onload="this.onload=function(){};handleClientLoad()"
+      onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
+    </center>
+  </body>
+</html>

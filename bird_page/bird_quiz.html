@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>鳥クイズ</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+  <!-- 1. ここにP5.jsを読み込む -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js"></script>
+  
+<!--マイク-->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script async defer src="https://apis.google.com/js/api.js"
+      onload="this.onload=function(){};handleClientLoad()"
+      onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
+</head>
+
+<body>
+ <center><h1>鳥クイズ</h1></center>
+  <div>
+    <div>あなたのID: <span id="myid"></span>
+    ルームID: <span id="room"></span>
+    受信した情報はコンソールログで確認してください</div>
+  </div>
+
+  <h2>【ルール説明】「分かった！」って話しかけてみて！</h2>
+  <div>
+  	スマホで赤い球を動かして、①～⑥のボックスに重ねてみよう。<br>
+  	中央に鳥の写真が出てきて、その鳥の鳴き声が聞こえるよ。<br>
+  	鳥の名前がわかったら、マイクの画像をクリックして、「分かった！」って言ってみてね。
+  </div>
+
+<h4>答え方のヒント</h4>
+<li>「他に分かった問題はある？」→あったら「〇番」って答えてね</li>
+<li>「他に分かった問題はある？」→無かったら「ない」って答えてね</li>
+
+<p class="center-box"><img id="mic" src="mike_batsu.png"></p><!--マイク喋らない画像-->
+<div id="result-div" class="large-text"></div>
+  
+<center><a href="bird.html"><h2>答えを見る</h2></a></center>
+  
+  <script  type="text/javascript">
+		var suzume = new Audio("bird/suzume.mp3");
+		var kakkou = new Audio("bird/kakkou.mp3");
+		var tonbi = new Audio("bird/tonbi.mp3");
+		var uguisu = new Audio("bird/uguisu.mp3");
+		var hiyodori = new Audio("bird/hiyodori.mp3");
+		var umineko = new Audio("bird/umineko.mp3");
+		
+    let room = "s1317259";
+    let socket = io.connect('https://qa.fujimura.com');
+    let myid;
+    
+    document.querySelector("#room").innerHTML = room;
+    socket.on('mylogin', function(data) {
+      myid = data;
+      socket.emit('join', room); // 受信room IDを指定
+      document.querySelector("#myid").innerHTML = myid;
+      console.log("あなたのID: ", myid);
+    });
+            
+    socket.on('sensor', function(data) {
+      console.log(data.g);
+      x = width/2 + 3*parseInt(data.g);
+      y = height/2 + 3*parseInt(data.b);
+    });
+    
+    
+    let x = 0;
+    let y = 0;
+    let suzume_img;
+    let kakkou_img;
+    let tonbi_img;
+    let uguisu_img;
+    let hiyodori_img;
+    let umineko_img;
+		
+		function preload() {
+      suzume_img = loadImage("img/suzume.jpg");
+      kakkou_img = loadImage("img/kakkou.jpg");
+      tonbi_img = loadImage("img/tonbi.jpg");
+      uguisu_img = loadImage("img/uguisu.jpg");
+      hiyodori_img = loadImage("img/hiyodori.jpg");
+      umineko_img = loadImage("img/umineko.jpg");
+    }
+
+    function setup() {
+      createCanvas(1100,850);
+      background(200);
+      x = 50;
+      y = 50;
+    }
+
+    function draw() {
+      background(200);
+      //rect(x1,y2,50,50);
+      fill(255);
+      //上の図形
+      rect(50,150,300,300);
+      rect(400,150,300,300);
+      rect(750,150,300,300);
+      //下の図形
+      rect(50,500,300,300);
+      rect(400,500,300,300);
+      rect(750,500,300,300);
+      
+			let ctx = canvas.getContext( '2d' );
+			ctx.font = '40pt Arial';
+			ctx.fillStyle = 'rgba(0, 0, 255)';
+			ctx.fillText("初級",140,100);
+			ctx.fillText("中級",500,100);
+			ctx.fillText("上級",840,100);
+			ctx.font = '90pt Arial';
+			ctx.fillText("①",140,350);
+			ctx.fillText("③",490,350);
+			ctx.fillText("⑤",840,350);
+			ctx.fillText("②",140,700);
+			ctx.fillText("④",490,700);
+			ctx.fillText("⑥",840,700);
+			
+      
+      //拡大
+      if (50<x && x<350 && 150<y && y<450){
+        fill(255,255,255);
+        rect(width/2-300,height/2-250,600,600);
+        fill(255,255,255,150);
+        rect(0,0,1100,850);
+				image(suzume_img,width/2-300,height/2-250,600,600);
+				suzume.play();
+      }
+      if (400<x && x<700 && 150<y && y<450){
+        fill(255,255,255);
+        rect(width/2-300,height/2-250,600,600);
+        fill(255,255,255,150);
+        rect(0,0,1100,850);
+				image(tonbi_img,width/2-300,height/2-250,600,600);
+				tonbi.play();
+				
+      }
+      if (750<x && x<1050 && 150<y && y<450){
+        fill(255,255,255);
+        rect(width/2-300,height/2-250,600,600);
+        fill(255,255,255,150);
+        rect(0,0,1100,850);
+				image(hiyodori_img,width/2-300,height/2-250,600,600);
+				hiyodori.play();
+      }
+      if (50<x && x<350 && 500<y && y<800){
+        fill(255,255,255);
+        rect(width/2-300,height/2-250,600,600);
+        fill(255,255,255,150);
+        rect(0,0,1100,850);
+				image(kakkou_img,width/2-300,height/2-250,600,600);
+				kakkou.play();
+      }
+      if (400<x && x<700 && 500<y && y<800){
+        fill(255,255,255);
+        rect(width/2-300,height/2-250,600,600);
+        fill(255,255,255,150);
+        rect(0,0,1100,850);
+				image(uguisu_img,width/2-300,height/2-250,600,600);
+				uguisu.play();
+      }
+      if (750<x && x<1050 && 500<y && y<800){
+        fill(255,255,255);
+        rect(width/2-300,height/2-250,600,600);
+        fill(255,255,255,150);
+        rect(0,0,1100,850);
+				image(umineko_img,width/2-300,height/2-250,600,600);
+				umineko.play();
+      }
+      
+      //赤い球
+      fill(255,0,0);
+      noStroke();
+      ellipse(x, y, 30, 30);
+    }
+    
+		
+		
+	const resultDiv = document.querySelector('#result-div');
+  const micDiv = document.querySelector('#mic');
+  let speakingtime = 0;
+  
+  // 音声認識機能(Chrome)
+  let rec = new webkitSpeechRecognition();
+  let stopped = true;
+  rec.continuous = true;
+  rec.interimResults = false;
+  rec.lang = 'ja-JP';
+
+  micDiv.onclick = function () {
+    if (stopped == true) {
+      stopped = false;
+      resultDiv.innerHTML = "";
+      rec.start();
+    } else {
+      stopped = true;
+      rec.stop();
+    }
+  }
+
+  rec.onstart = function () {
+    console.log('on start');
+    micDiv.setAttribute("src","mike_maru.png");//マイク喋る画像
+    speakingtime = 0;
+  };
+
+  rec.onend = function () {
+    console.log('on end');
+    micDiv.setAttribute("src","mike_batsu.png");//マイク喋らない画像
+    if (stopped == false) {
+      setTimeout(function () {
+        rec.start();
+      },speakingtime);
+    }
+  };
+
+  //認識結果が得られたとき
+  rec.onresult = function (e) {
+    rec.stop();
+    for (let i = e.resultIndex; i < e.results.length; i++) {
+      if (e.results[i].isFinal) {
+        console.log(e);
+        let text = e.results[i][0].transcript;//認識結果が入る
+        console.log(text);
+        speak(reply(text));
+        speakingtime = text.length * 200;
+        console.log("estimate:", speakingtime, "ms");
+        //speak(text);//オウム返し
+        resultDiv.innerHTML = text;
+      }
+    }
+  }
+
+  function reply(text){
+    let re = new RegExp(".*分かった.*");
+    let re1 = new RegExp(".*一.*");
+    let re2 = new RegExp(".*スズメ.*");
+    let re3 = new RegExp(".*2.*");
+    let re4 = new RegExp(".*カッコウ.*");
+    let re5 = new RegExp(".*かっこ.*");
+    let re6 = new RegExp(".*3.*");
+    let re7 = new RegExp(".*とんび.*");
+    let re8 = new RegExp(".*とび.*");
+    let re9 = new RegExp(".*4.*");
+    let re10 = new RegExp(".*うぐいす.*");
+    let re11 = new RegExp(".*5.*");
+    let re12 = new RegExp(".*ヒヨドリ.*");
+    let re13 = new RegExp(".*6.*");
+    let re14 = new RegExp(".*うみねこ.*");
+    let re15 = new RegExp(".*ない.*");
+    
+    
+    if (re.test(text)){
+      return("おっ！もうわかったんだね！何番が分かったのかな？");
+        }else if (re1.test(text)){
+          return("オッケー、1番だね。この鳥は私たちの身近にいるよね。じゃあ鳥の名前を答えてみて。");
+        }else if (re2.test(text)){
+          return("大正解！スズメだよ。この問題はちょっと簡単すぎたかな？他に分かった問題はある？");
+        }else if (re3.test(text)){
+          return("オッケー、2番だね。この鳥は鳴き声で分かったんじゃないかな？じゃあ鳥の名前を答えてみて。");
+				}else if (re4.test(text)||re5.test(text)){
+          return("大正解！カッコウだよ。この問題はちょっと簡単だったかな？他に分かった問題はある？");
+				}else if (re6.test(text)){
+          return("オッケー、3番だね。この鳥はたまに鳴き声を聞くことがあるよね。じゃあ鳥の名前を答えてみて。");
+				}else if (re7.test(text)||re8.test(text)){
+          return("大正解！トンビだよ。トビとも言われるよね。この問題はちょっと難しかったかな？他に分かった問題はある？");
+				}else if (re9.test(text)){
+          return("オッケー、4番だね。この鳥はたまに鳴き声を聞くことがあるよね。じゃあ鳥の名前を答えてみて。");
+				}else if (re10.test(text)){
+          return("大正解！ウグイスだよ。この問題はちょっと難しかったかな？他に分かった問題はある？");
+				}else if (re11.test(text)){
+          return("オッケー、5番だね。この鳥は見覚えがあるかな？鳴き声も聞いたことがあるはず！じゃあ鳥の名前を答えてみて。");
+				}else if (re12.test(text)){
+          return("大正解！ヒヨドリだよ。この問題は難しかったよね！よくわかったね！すごい！他に分かった問題はある？");
+				}else if (re13.test(text)){
+          return("オッケー、6番だね。この鳥は鳴き声を聞いたことがあるはず！じゃあ鳥の名前を答えてみて。");
+				}else if (re14.test(text)){
+          return("大正解！ウミネコだよ。この問題は難しかったよね！よくわかったね！すごい！他に分かった問題はある？");
+				}else if (re15.test(text)){
+          return("了解！じゃあ鳥クイズを終了するよ！また問題にチャレンジしたくなったから話しかけてね！");
+        }else{
+          return("もう一度言ってね");
+        }
+    }
+  
+  // 発話機能をインスタンス化
+  let msg = new SpeechSynthesisUtterance();
+  let voices = window.speechSynthesis.getVoices();
+
+  function speak(text) {
+    // 以下オプション設定（日本語は効かないもよう。。）
+    msg.voice = voices[7]; // 7:Google 日本人 ja-JP ※他は英語のみ
+    msg.volume = 1.0; // 音量 min 0 ~ max 1
+    msg.rate = 1.0; // 速度 min 0 ~ max 10
+    msg.pitch = 1.0; // 音程 min 0 ~ max 2
+
+    msg.text = text; // 喋る内容
+    msg.lang = 'ja-JP'; // en-US or ja-JP
+    // msg.lang = 'en-US'; // en-US or ja-JP
+
+    // 発話実行
+    speechSynthesis.speak(msg);
+  }
+  
+  // 終了時の処理
+  msg.onend = function (event) {
+    console.log('喋った時間：' + event.elapsedTime + 'ms');
+  }
+		
+</script>
+
+</body>
+</html>

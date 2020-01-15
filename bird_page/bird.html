@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+.links line {
+  stroke: #999;
+  stroke-opacity: 0.6;
+}
+
+.nodes circle {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+text {
+  font-family: sans-serif;
+  font-size: 10px;
+}
+	
+img{
+  float: left;
+  margin-right: 16px;
+}
+	
+section {
+	border-bottom: solid 1px #ccc;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+}
+
+section:after{
+  display: block;
+  content: "";
+  clear: both;
+}
+</style>
+
+<body>
+ <center>
+ 	<a href="bird_quiz.html"><h1>鳥クイズ</h1></a>
+ </center>
+	<h2>【答え合わせ】</h2>
+	<h3>≪初級≫</h3>
+	<section>
+		<img src="img/suzume.jpg" alt="suzume" width="300px">
+		 <h4>①スズメ目　ハタオドリ科　スズメ</h4>
+		 <p>全長は約14-15cmで、体重は18-27g。<br>
+ 				鳴き声は、「ちゅんちゅん」。<br><br>
+	 			私たちの周りでよく見かける鳥だね！<br>
+		 		田舎のスズメは警戒心が強いけど、都会のスズメは人に慣れている感じがするよね(◎_◎)
+		 </p>
+	</section>
+	
+	<section>
+		<img src="img/kakkou.jpg" alt="kakkou" width="300px">
+		<h4>②カッコウ目　カッコウ科　カッコウ</h4>
+		 <p>全長は約33-35cmで、体重は70-130g。<br>
+		 		鳴き声は、その名の通り「カッコーカッコー」。<br><br>
+		 		「托卵」といって、自分の卵を他の鳥の巣に産み付けて育てさせるという習性があることで有名だよ！
+		 </p>
+	</section>
+
+	<h3>≪中級≫</h3>
+	
+	<section>
+		<img src="img/tonbi.jpg" alt="tonbi" width="300px">
+		<h4>③タカ目　タカ科　トンビ</h4>
+		 <p>全長は約60-65cmで、体重は660-1075g。<br>
+		 		鳴き声は、「ピーヒョロロロロ…」。<br><br>
+		 		輪を描くように、旋回して飛ぶ様子が特徴的だよね！あれは上昇気流に乗っているから、ほとんど羽ばたいていないんだよ(◎_◎)<br>
+		 		獲物を見つけると、急降下して捕らえるんだ！
+		 </p>
+	</section>
+	
+	<section>
+		<img src="img/uguisu.jpg" alt="uguisu" width="300px">
+		<h4>④スズメ目　ウグイス科　ウグイス</h4>
+		 <p>全長は約14-16cmで、体重は12-20g。<br>
+		 		鳴き声は、「ホーホケキョ」。その美しい鳴き声から、日本三鳴鳥の一つとされているよ。<br><br>
+		 		ウグイスの鳴き声を聞くと、春の訪れを感じるよね！「春告鳥（はるつげどり）」とも呼ばれていて、昔から春を告げる鳥だとされてきたんだよ。
+		</p>
+	</section>
+	
+	<h3>≪上級≫</h3>
+	
+	<section>
+		<img src="img/hiyodori.jpg" alt="hiyodori" width="300px">
+		<h4>⑤スズメ目　ヒヨドリ科　ヒヨドリ</h4>
+		 <p>全長は約27-29cmで、体重は60-75g。<br>
+		 		鳴き声は、「ヒーヨ! ヒーヨ!」。<br><br>
+		 		実はヒヨドリも私たちの身近な鳥なんだよ！家の庭や畑、公園で見かけたことは無いかな？<br>
+		 		都市部にも多く生息しているから、きっとすぐ見つかるはず！
+		</p>
+	</section>
+	
+	<section>
+		<img src="img/umineko.jpg" alt="umineko" width="300px">
+		<h4>⑥チドリ目　カモメ科　ウミネコ</h4>
+		 <p>全長は約44-48cmで、体重は0.5-0.6kg。<br>
+		 		鳴き声は、「ミャーオ ミャーオ」。鳴き声が猫に似ていることから「海猫」と名付けられたよ。<br><br>
+		 		ところで「ウミネコ」と「カモメ」ってどんな違いがあるか知ってるかな？<br>
+		 		色や模様が少し異なるのはもちろんだけど、「ウミネコ」は国内で一年中姿を見ることができる「留鳥」、「カモメ」は冬に日本に来る「渡り鳥」なんだよ！
+		</p>
+	</section>
+
+	<h2>【鳥類分類図】</h2>
+	<p>①～⑥の仲間には、どんな鳥がいるかな？じっくり見てみると新しい発見があるかも！</p>
+</body>
+
+<svg width="960" height="600"></svg>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+
+var svg = d3.select("svg"),
+    width = +svg.attr("width"),
+    height = +svg.attr("height");
+
+var color = d3.scaleOrdinal(d3.schemeCategory20);
+
+var simulation = d3.forceSimulation()
+    .force("link", d3.forceLink().id(function(d) { return d.id; }))
+    .force("charge", d3.forceManyBody())
+    .force("center", d3.forceCenter(width / 2, height / 2));
+
+d3.json("bird.json", function(error, graph) {
+  if (error) throw error;
+
+  var link = svg.append("g")
+      .attr("class", "links")
+    .selectAll("line")
+    .data(graph.links)
+    .enter().append("line")
+      .attr("stroke-width", function(d) { return Math.sqrt(d.value); });
+
+  var node = svg.append("g")
+      .attr("class", "nodes")
+    .selectAll("g")
+    .data(graph.nodes)
+    .enter().append("g")
+    
+  var circles = node.append("circle")
+      .attr("r", 5)
+      .attr("fill", function(d) { return color(d.group); })
+      .call(d3.drag()
+          .on("start", dragstarted)
+          .on("drag", dragged)
+          .on("end", dragended));
+
+  var lables = node.append("text")
+      .text(function(d) {
+        return d.id;
+      })
+      .attr('x', 6)
+      .attr('y', 3);
+
+  node.append("title")
+      .text(function(d) { return d.id; });
+
+  simulation
+      .nodes(graph.nodes)
+      .on("tick", ticked);
+
+  simulation.force("link")
+      .links(graph.links);
+
+  function ticked() {
+    link
+        .attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
+
+    node
+        .attr("transform", function(d) {
+          return "translate(" + d.x + "," + d.y + ")";
+        })
+  }
+});
+
+function dragstarted(d) {
+  if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+  d.fx = d.x;
+  d.fy = d.y;
+}
+
+function dragged(d) {
+  d.fx = d3.event.x;
+  d.fy = d3.event.y;
+}
+
+function dragended(d) {
+  if (!d3.event.active) simulation.alphaTarget(0);
+  d.fx = null;
+  d.fy = null;
+}
+
+</script>
